@@ -9,15 +9,13 @@ const [turn, setTurn] = useState(false)// if true then 'o' or 'x'
 const [winner, setWinner] = useState('')
 
 function handleCLick(index){
-    console.log(index)
-    todos[index] = (turn) ? 'O' : 'X';
-    console.log('check')
-    const win = isWinner(todos, turn ? 'O' : 'X');
-    if(win){
-        setWinner(win);
-    }
-    setTodos([...todos])
-    setTurn(!turn);
+        todos[index] = (turn) ? 'O' : 'X';
+        const win = isWinner(todos, turn ? 'O' : 'X');
+        if(win){
+            setWinner(win);
+        }
+        setTodos([...todos])
+        setTurn(!turn);
 }
 
 
@@ -36,7 +34,7 @@ function handleCLick(index){
             <>
                 <h1 className="turn">Current Turn:{(turn) ? 'O' : 'X'} </h1>
                 <div className="grid">
-                { todos.map((item, idx) => <Card key={idx} turn={handleCLick} player={item} pIndex={idx}/> )}
+                { todos.map((item, idx) => <Card gameEnd={winner ? true: false} key={idx} turn={handleCLick} player={item} pIndex={idx}/> )}
                 </div>
             </>
         </div>
